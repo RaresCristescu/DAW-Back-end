@@ -33,6 +33,10 @@ namespace proiect.Controllers
         {
             return users.FirstOrDefault(x => x.Name.Equals(name) && x.Telefon.Equals(telefon));
         }
-
+        [HttpGet("byIdFromHeader")]
+        public User GetUserIdFromHeader([FromHeader]int id)
+        {
+            return users.FirstOrDefault(s => s.Id.Equals(id));
+        }
     }
 }

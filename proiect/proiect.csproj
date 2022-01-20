@@ -16,9 +16,4 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\Relations\ManyToMany\" />
-    <Folder Include="Models\Relations\OneToOne\" />
-  </ItemGroup>
-
 </Project>

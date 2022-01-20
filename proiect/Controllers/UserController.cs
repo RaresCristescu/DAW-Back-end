@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using proiect.Models;
 using System;
@@ -34,17 +35,17 @@ namespace proiect.Controllers
             return users.FirstOrDefault(x => x.Name.Equals(name) && x.Telefon.Equals(telefon));
         }
         [HttpGet("byIdFromHeader")]
-        public User GetUserIdFromHeader([FromHeader]int id)
+        public User GetUserIdFromHeader([FromHeader] int id)
         {
             return users.FirstOrDefault(s => s.Id.Equals(id));
         }
         [HttpGet("byIdFromQuery")]
-        public User GetUserByidFromQuery([FromQuery]int id)
+        public User GetUserByidFromQuery([FromQuery] int id)
         {
             return users.FirstOrDefault(s => s.Id.Equals(id));
         }
         [HttpGet("byIdFromQueryWithFiltre")]
-        public User GetUserByidFromQueryWithFiltre([FromQuery] int id,[FromQuery]string telefon)
+        public User GetUserByidFromQueryWithFiltre([FromQuery] int id, [FromQuery] string telefon)
         {
             return users.FirstOrDefault(s => s.Id.Equals(id) && s.Telefon.Equals(telefon));
         }
@@ -60,7 +61,7 @@ namespace proiect.Controllers
             return Ok(users);
         }
         [HttpPost("addUserFromHeader")]
-        public IActionResult AddUserFromHeader([FromHeader]User user)//cica nu merge sa dia post din header
+        public IActionResult AddUserFromHeader([FromHeader] User user)//cica nu merge sa dia post din header
         {
             users.Add(user);
             return Ok(users);
@@ -84,6 +85,26 @@ namespace proiect.Controllers
         {
             users.Remove(user);
             return Ok(users);
+        }
+
+        [HttpPatch("{id:int}")]
+        public IActionResult Patch([FromRoute]int id, [FromBody] JsonPatchDocument<User>user)
+        {
+            if (user != null)
+            {
+                var userToUpdate = users.FirstOrDefault(_user => _user.Id.Equals(id));
+                user.ApplyTo(userToUpdate, (Microsoft.AspNetCore.JsonPatch.Adapters.IObjectAdapter)ModelState);//patchu nu e foarte folosit dar sa avem despre el
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest();
+                }
+                return Ok(users);
+
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
     }
 }

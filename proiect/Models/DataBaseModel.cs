@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace proiect.Models
 {
-    public class DataBaseModel:BaseEntity
+    public class DataBaseModel : BaseEntity
     {
-
+        public string Name { get; set; }
     }
 }

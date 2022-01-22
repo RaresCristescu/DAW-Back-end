@@ -16,5 +16,5 @@ namespace proiect.Models.Base
         public DateTime? DateCreated { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime? DateModified { get; set; }
-    }
+    } 
 }

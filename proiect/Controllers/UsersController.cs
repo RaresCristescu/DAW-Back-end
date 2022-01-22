@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using proiect.Models;
+using proiect.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,19 @@ namespace proiect.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UsersController : ControllerBase
     {
+        private IUserService _userService;
+
+        public UsersController(IUserService userService)
+        {
+            _userService=userService;
+        }
         public static List<User> users = new List<User>
         {
-            new User {Id=1,Name="Rares",UserName="admin",Email="admin@gmail.com",Telefon="0734951510"},
-            new User {Id=2,Name="Vasile",UserName="vsl",Email="vasile@gmail.com" ,Telefon="0734998510"},
-            new User {Id=3,Name="Luca",UserName="luk",Email="luk69@gmail.com",Telefon="0732251510" }
+            //new User {Id=1,Name="Rares",UserName="admin",Email="admin@gmail.com",Telefon="0734951510"},
+            //new User {Id=2,Name="Vasile",UserName="vsl",Email="vasile@gmail.com" ,Telefon="0734998510"},
+            //new User {Id=3,Name="Luca",UserName="luk",Email="luk69@gmail.com",Telefon="0732251510" }
         };
         [HttpGet("getUsers")]
         public List<User> Get()
@@ -30,9 +37,9 @@ namespace proiect.Controllers
             return users.FirstOrDefault(s => s.Id.Equals(id));
         }
         [HttpGet("filter/{name}/{telefon}")]
-        public User GetWithFilter(string name, string telefon)
+        public User GetWithFilter(string firstName, string lastName)
         {
-            return users.FirstOrDefault(x => x.Name.Equals(name) && x.Telefon.Equals(telefon));
+            return users.FirstOrDefault(x => x.FirstName.Equals(firstName) && x.LastName.Equals(lastName));
         }
         [HttpGet("byIdFromHeader")]
         public User GetUserIdFromHeader([FromHeader] int id)
@@ -45,9 +52,9 @@ namespace proiect.Controllers
             return users.FirstOrDefault(s => s.Id.Equals(id));
         }
         [HttpGet("byIdFromQueryWithFiltre")]
-        public User GetUserByidFromQueryWithFiltre([FromQuery] int id, [FromQuery] string telefon)
+        public User GetUserByidFromQueryWithFiltre([FromQuery] int id, [FromQuery] string firstName)
         {
-            return users.FirstOrDefault(s => s.Id.Equals(id) && s.Telefon.Equals(telefon));
+            return users.FirstOrDefault(s => s.Id.Equals(id) && s.FirstName.Equals(firstName));
         }
 
         [HttpPost("AddUser")]

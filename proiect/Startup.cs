@@ -1,18 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using proiect.Data;
 using proiect.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using proiect.Repositories.DatabaseRepository;
+using proiect.Services.DemoService;
 
 namespace proiect
 {
@@ -34,7 +30,20 @@ namespace proiect
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "proiect", Version = "v1" });
             });
-            services.AddDbContext<ProiectContext>(options=>options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ProiectContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            //repositories
+
+            //created each time they are requested
+            services.AddTransient<IDatabaseRepository, DatabaseRepository>();
+            //They are created on the first request
+            //services.AddSingleton<IDatabaseRepository, DatabaseRepository>();
+            //Created once per client request (per http request)
+            //services.AddScoped<IDatabaseRepository, DatabaseRepository>();
+
+            //services
+            services.AddTransient<IDemoService, DemoService>();
+            //services.AddDbContext<ProiectContext>(options=>options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

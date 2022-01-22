@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using proiect.Models;
 using proiect.Models.Relations.ManyToMany;
 using proiect.Models.Relations.OneToMany;
 using proiect.Models.Relations.OneToOne;
@@ -7,17 +8,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace proiect.Models
+namespace proiect.Data
 {
     public class ProiectContext:DbContext
     {
-        public ProiectContext(DbContextOptions<ProiectContext>options):base(options)
-        {
-
-        }
-        public DbSet<DataBaseModel> DataBaseModels { get; set; }
-
-        //One To Many
         public DbSet<Model1> Models1 { get; set; }
         public DbSet<Model2> Models2 { get; set; }
         public DbSet<Model3> Models3 { get; set; }
@@ -25,6 +19,14 @@ namespace proiect.Models
         public DbSet<ModelsRelation> ModelsRelations { get; set; }
         public DbSet<Model5> Models5 { get; set; }
         public DbSet<Model6> Models6 { get; set; }
+        public DbSet<User> Users { get; set; }
+        public ProiectContext(DbContextOptions<ProiectContext>options):base(options)
+        {
+
+        }
+        public DbSet<DataBaseModel> DataBaseModels { get; set; }
+
+        
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -53,6 +55,7 @@ namespace proiect.Models
                 .HasOne(a => a.Model6)
                 .WithOne(b => b.Model5)
                 .HasForeignKey<Model6>(h => h.Model5Id);
+            base.OnModelCreating(builder);
         }
     }
 }

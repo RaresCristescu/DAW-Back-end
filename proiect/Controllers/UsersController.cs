@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using proiect.Models;
+using proiect.Models.DTOs;
 using proiect.Services;
+using proiect.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,8 +21,51 @@ namespace proiect.Controllers
 
         public UsersController(IUserService userService)
         {
-            _userService=userService;
+            _userService = userService;
         }
+
+        [HttpPost("authenticate")]
+        public IActionResult Authenticate(UserRequestDTO user)
+        {
+            var response = _userService.Authenticate(user);
+
+            if (response == null)
+            {
+                return BadRequest(new { Message = "Username or Password is invalid" });
+            }
+            return Ok(response);
+        }
+        [HttpPost("create")]
+        public IActionResult Create(UserRequestDTO user)
+        {
+            var userToCreate = new User
+            {
+                FirstName = user.FirstName,
+                Role = Role.User,
+                PasswordHash =BCrypt.Net.BCrypt.HashPassword(user.Password)
+                //BcryptNet.HashPassword(user.Password)
+            };
+            return Ok();
+        }
+
+        //[Authorize(Roles ="Admin")]
+        //[AllowAnonymous]//merge doar daca stii calea catre get all , 
+        [Authorization(Role.Admin)]
+        [HttpGet]
+
+        public IActionResult GetAllUsers()
+        {
+            var users = _userService.GetAllUsers();
+            return Ok(users);
+        }
+
+
+
+
+
+
+
+
         public static List<User> users = new List<User>
         {
             //new User {Id=1,Name="Rares",UserName="admin",Email="admin@gmail.com",Telefon="0734951510"},

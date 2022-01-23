@@ -23,8 +23,8 @@ namespace proiect.Services.DemoService
             {
                 Title = model1.Title,
                 Order = model1.Order,
-                Model1Id = model1.Id,
-                Models2 = (List<Model2>)model1.Models2
+                //Model1Id = model1.Id,
+                //Models2 = (List<Model2>)model1.Models2
             };
 
             return result;

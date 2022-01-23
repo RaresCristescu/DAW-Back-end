@@ -20,6 +20,7 @@ namespace proiect.Data
         public DbSet<Model5> Models5 { get; set; }
         public DbSet<Model6> Models6 { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Student> Students { get; set; }
         public ProiectContext(DbContextOptions<ProiectContext>options):base(options)
         {
 

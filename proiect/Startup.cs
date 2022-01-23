@@ -8,12 +8,20 @@ using Microsoft.OpenApi.Models;
 using proiect.Data;
 using proiect.Models;
 using proiect.Repositories.DatabaseRepository;
+using proiect.Services;
 using proiect.Services.DemoService;
+using proiect.Utilities;
+using proiect.Utilities.Extensions;
+using proiect.Utilities.JWTUtils;
+using proiect.Utilities.Seeders;
+using AutoMapper;
+
 
 namespace proiect
 {
     public class Startup
     {
+        private readonly string CorsAllowSpecificOrigin = "frontendAllowOrigin";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -35,19 +43,45 @@ namespace proiect
             //repositories
 
             //created each time they are requested
-            services.AddTransient<IDatabaseRepository, DatabaseRepository>();
+            ///////////services.AddTransient<IDatabaseRepository, DatabaseRepository>();
             //They are created on the first request
             //services.AddSingleton<IDatabaseRepository, DatabaseRepository>();
             //Created once per client request (per http request)
             //services.AddScoped<IDatabaseRepository, DatabaseRepository>();
 
             //services
-            services.AddTransient<IDemoService, DemoService>();
+            ///////////services.AddTransient<IDemoService, DemoService>();
             //services.AddDbContext<ProiectContext>(options=>options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            //AppSettings configuration
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            //JWT
+            services.AddScoped<IJWTUtils, JWTUtils>();
+            //User Services
+            services.AddScoped<IUserService, UserService>();
+
+
+            services.AddServices();//inlocuieste mai general 
+            services.AddRepository();//si asta
+
+            services.AddAutoMapper(typeof(Startup));
+
+            ///Cors
+            services.AddCors(options=> 
+            {
+                options.AddPolicy(name: CorsAllowSpecificOrigin,
+                    builder =>
+                    {
+                        builder.WithOrigins("https://localhost:4200", "https://localhost:4201")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials();
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,StudentSeeder studentsSeeder)
         {
             if (env.IsDevelopment())
             {
@@ -56,9 +90,17 @@ namespace proiect
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "proiect v1"));
             }
 
+            //
+            studentsSeeder.SeedInitialStudents();
+            //
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            //adaug middleware
+            app.UseMiddleware<JWTMiddleware>();
+
 
             app.UseAuthorization();
 

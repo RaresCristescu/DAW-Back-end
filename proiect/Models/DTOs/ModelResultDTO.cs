@@ -10,8 +10,10 @@ namespace proiect.Models.DTOs
     {
         public string Title { get; set; }
         public int Order { get; set; }
-        public Guid Model1Id { get; set; }
-        public List<Model2> Models2 { get; set; }
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public Guid StudentId { get; set; }
+        public string Password { get; set; }
 
     }
 }

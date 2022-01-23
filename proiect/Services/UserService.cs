@@ -20,7 +20,7 @@ namespace proiect.Services
         {
             var user = _proiectContext.Users.FirstOrDefault(x => x.UserName == model.UserName);
 
-            if (user==null || !BCryptNet.Verify(model.Password,user.PasswordHash))
+            if (user==null || !BCrypt.Net.BCrypt.Verify(model.Password, user.PasswordHash))
             {//!BCryptNet.Verify(model.Password, user.PasswordHash)
                 return null;
             }

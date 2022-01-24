@@ -11,6 +11,11 @@ namespace proiect.Repositories.DatabaseRepository.AddressRepo
     {
         Address GetByCodPostal(string title);
         Address GetByCodPostalIncludingUser(string title);
+        Address GetByLocalitateIncludingUser(string localitate);
+        Address PostAddress(Address address);
+        Address PutAddress(Guid addId,Address address);
+
+        Address DeleteAddress(Guid addressId);
         List<Address> GetAllWithInclude();
         List<Address> GetAllWithJoin();
     }

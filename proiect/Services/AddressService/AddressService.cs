@@ -26,7 +26,56 @@ namespace proiect.Services.AddressService
                 Judet=address.Judet,
                 Localitate=address.Localitate
             };
+            return result;
+        }
+        AddressRequestDTO IAddressService.GetDataMappedByLocalitate(string codPostal)
+        {
+            Address address = _addressRepository.GetByLocalitateIncludingUser(codPostal);
+            AddressRequestDTO result = new()
+            {
+                CodPostal = address.CodPostal,
+                Strada = address.Strada,
+                Judet = address.Judet,
+                Localitate = address.Localitate
+            };
+            return result;
+        }
 
+        AddressRequestDTO IAddressService.PostDataMappedByLocalitate(Address _address)
+        {
+            Address address = _addressRepository.PostAddress(_address);
+            AddressRequestDTO result = new()
+            {
+                CodPostal = address.CodPostal,
+                Strada = address.Strada,
+                Judet = address.Judet,
+                Localitate = address.Localitate
+            };
+            return result;
+        }
+
+        AddressRequestDTO IAddressService.PutDataMappedById(Guid addressId,Address _address)
+        {
+            Address address = _addressRepository.PutAddress(addressId,_address);
+            AddressRequestDTO result = new()
+            {
+                CodPostal = address.CodPostal,
+                Strada = address.Strada,
+                Judet = address.Judet,
+                Localitate = address.Localitate
+            };
+            return result;
+        }
+        AddressRequestDTO IAddressService.DeleteDataMappedById(Guid addressId)
+        {
+            Address address = _addressRepository.DeleteAddress(addressId);
+            AddressRequestDTO result = new()
+            {
+                CodPostal = address.CodPostal,
+                Strada = address.Strada,
+                Judet = address.Judet,
+                Localitate = address.Localitate
+            };
             return result;
         }
     }

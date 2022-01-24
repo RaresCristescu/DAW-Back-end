@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using proiect.Data;
 using proiect.Models;
 using System;
@@ -14,7 +15,7 @@ namespace proiect.Repositories.DatabaseRepository.AddressRepo
         {
 
         }
-        public List<Address> GetAllWithInclude()
+        public List<Address> GetAllWithInclude() 
         {
             return _table.Include(x => x.Users).ToList();
         }
@@ -46,10 +47,44 @@ namespace proiect.Repositories.DatabaseRepository.AddressRepo
         {
             return _table.Include(x => x.Users).FirstOrDefault(x => x.CodPostal.ToLower().Equals(codPostal.ToLower()));
         }
+
+        public Address GetByLocalitateIncludingUser(string localitate)
+        {
+            return _table.Include(x => x.Users).FirstOrDefault(x => x.Localitate.ToLower().Equals(localitate.ToLower()));
+        }
+
+        public Address PostAddress(Address address)
+        {
+            _context.Add<Address>(address);
+            _context.SaveChanges();
+
+            return address;
+        }
+        public Address PutAddress(Guid addId,Address address)
+        {
+            Address adr=_table.Where(x => x.Id == addId).Single<Address>();
+            adr.Judet = address.Judet;
+            adr.Localitate = address.Localitate;
+            adr.Strada = address.Strada;
+            adr.CodPostal = address.CodPostal;
+            _context.Update(adr);
+            _context.SaveChanges();
+
+            return adr;
+        }
+
+        public Address DeleteAddress(Guid addressId)
+        {
+            Address adr = _table.Where(x => x.Id == addressId).Single<Address>();
+            _context.Remove<Address>(adr);
+            _context.SaveChanges();
+            return adr;
+        }
+
         public Address WhereWithLinqQuerySyntaz(string localitate)
         {
             var result = from n1 in _table
-                         where n1.Localitate == "Bucuresti"
+                         where n1.Localitate == localitate
                          select n1;
             //var result2 = _table.Where(x => x.Order > 1);// alta varianta
 

@@ -64,7 +64,7 @@ namespace proiect.Repositories
         }
         public void UpdateRange(IEnumerable<TEntity> entities)
         {
-            _table.UpdateRange(entities);
+            _table.UpdateRange(entities); 
         }
         //Delete
         public void Delete(TEntity entity)

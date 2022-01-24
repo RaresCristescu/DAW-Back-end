@@ -19,6 +19,10 @@ namespace proiect.Models
         [JsonIgnore]
         public string PasswordHash { get; set; }
         public Role Role { get; set; }
+        public Address Address { get; set; }
+        public Guid AddressId { get; set; }
+
+        public ICollection<Comanda> Comandas { get; set; }//Comandas :)))))
 
         //[StringLength(11)]
         //public string Telefon { get; set; }

@@ -64,7 +64,7 @@ namespace proiect
             services.AddServices();//inlocuieste mai general 
             services.AddRepository();//si asta
 
-            services.AddAutoMapper(typeof(Startup));
+            //services.AddAutoMapper(typeof(Startup));
 
             ///Cors
             services.AddCors(options=> 
@@ -81,7 +81,7 @@ namespace proiect
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,StudentSeeder studentsSeeder)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)//,StudentSeeder studentsSeeder
         {
             if (env.IsDevelopment())
             {
@@ -91,7 +91,7 @@ namespace proiect
             }
 
             //
-            studentsSeeder.SeedInitialStudents();
+            //studentsSeeder.SeedInitialStudents();
             //
 
             app.UseHttpsRedirection();

@@ -82,7 +82,7 @@ namespace proiect.Controllers
         {
             return users.FirstOrDefault(s => s.Id.Equals(id));
         }
-        [HttpGet("filter/{name}/{telefon}")]
+        [HttpGet("filter/{firstname}/{lastname}")]
         public User GetWithFilter(string firstName, string lastName)
         {
             return users.FirstOrDefault(x => x.FirstName.Equals(firstName) && x.LastName.Equals(lastName));

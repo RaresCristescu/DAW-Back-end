@@ -19,7 +19,7 @@ namespace proiect.Utilities
         }
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            var unauthorizeStatusCodeObject = new JsonResult(new { Message = "Undauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+            var unauthorizeStatusCodeObject = new JsonResult(new { Message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
 
             if (_roles == null)
             {

@@ -19,15 +19,25 @@ namespace proiect.Data
         public DbSet<ModelsRelation> ModelsRelations { get; set; }
         public DbSet<Model5> Models5 { get; set; }
         public DbSet<Model6> Models6 { get; set; }
-        public DbSet<User> Users { get; set; }
         public DbSet<Student> Students { get; set; }
+/// <summary>
+/// ///////////////////////////////////////////////////
+/// </summary>
+        public DbSet<User> Users { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Categorie> Categories { get; set; }
+        public DbSet<Comanda> Comandas { get; set; }
+        public DbSet<DetaliiComanda> DetaliiComandas { get; set; }
+        public DbSet<Produs> Produss { get; set; }
+
+
         public ProiectContext(DbContextOptions<ProiectContext>options):base(options)
         {
 
         }
         public DbSet<DataBaseModel> DataBaseModels { get; set; }
 
-        
+
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -40,6 +50,7 @@ namespace proiect.Data
                  .HasOne(c => c.Model1)
                  .WithMany(e => e.Models2);*/
             //Many to Many
+
             builder.Entity<ModelsRelation>().HasKey(mr => new { mr.Model3Id, mr.Model4Id });
 
             builder.Entity<ModelsRelation>()
@@ -56,6 +67,31 @@ namespace proiect.Data
                 .HasOne(a => a.Model6)
                 .WithOne(b => b.Model5)
                 .HasForeignKey<Model6>(h => h.Model5Id);
+            
+
+            //Baza de date
+            //////////////////////////////////////////////////////////////////////////////////
+            builder.Entity<Address>()
+                .HasMany(c => c.Users)
+                .WithOne(e => e.Address);
+            builder.Entity<User>()
+                .HasMany(c => c.Comandas)
+                .WithOne(e => e.User);
+
+            builder.Entity<DetaliiComanda>().HasKey(mr => new { mr.ComandaId, mr.ProdusId });
+            builder.Entity<DetaliiComanda>()
+                .HasOne<Comanda>(x => x.Comanda)
+                .WithMany(y => y.DetaliiComandas)
+                .HasForeignKey(z => z.ComandaId);
+            builder.Entity<DetaliiComanda>()
+                .HasOne<Produs>(x => x.Produs)
+                .WithMany(y => y.DetaliiComandas)
+                .HasForeignKey(z => z.ProdusId);
+
+            builder.Entity<Categorie>()
+                .HasMany(c => c.Produss)
+                .WithOne(e => e.Categorie);
+            //
             base.OnModelCreating(builder);
         }
     }

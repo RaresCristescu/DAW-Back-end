@@ -13,7 +13,7 @@ namespace proiect.Repositories.DatabaseRepository.CategorieRepo
         Categorie GetByNameIncludingProdus(string name);
         Categorie PostCategorie(Categorie categorie);
         Categorie PutCategorie(Guid catId, Categorie categorie);
-        Categorie DeleteAddress(Guid catId);
+        Categorie DeleteCategorie(Guid catId);
         List<Categorie> GetAllWithInclude();
         List<Categorie> GetAllWithJoin();
     }

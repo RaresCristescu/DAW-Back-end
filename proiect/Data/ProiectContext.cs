@@ -20,9 +20,9 @@ namespace proiect.Data
         public DbSet<Model5> Models5 { get; set; }
         public DbSet<Model6> Models6 { get; set; }
         public DbSet<Student> Students { get; set; }
-/// <summary>
-/// ///////////////////////////////////////////////////
-/// </summary>
+        /// <summary>
+        /// ///////////////////////////////////////////////////
+        /// </summary>
         public DbSet<User> Users { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Categorie> Categories { get; set; }

@@ -12,11 +12,11 @@ namespace proiect.Utilities
     {
         public MapperProfiles()
         {
-            CreateMap<Student, ModelResultDTO>();
-            CreateMap<ModelResultDTO,Student>();
+            //CreateMap<Student, ModelResultDTO>();
+            //CreateMap<ModelResultDTO,Student>();
 
-            CreateMap<Student, ModelResultDTO>()
-                .ForMember(dest => dest.StudentId, opts => opts.MapFrom(source => source.Id));
+            //CreateMap<Student, ModelResultDTO>()
+            //    .ForMember(dest => dest.StudentId, opts => opts.MapFrom(source => source.Id));
         }
     }
 }

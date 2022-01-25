@@ -6,15 +6,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using proiect.Data;
-using proiect.Models;
-using proiect.Repositories.DatabaseRepository;
 using proiect.Services;
-using proiect.Services.DemoService;
 using proiect.Utilities;
 using proiect.Utilities.Extensions;
 using proiect.Utilities.JWTUtils;
-using proiect.Utilities.Seeders;
-using AutoMapper;
 
 
 namespace proiect

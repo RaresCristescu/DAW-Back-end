@@ -1,16 +1,12 @@
 ﻿using proiect.Data;
 using proiect.Models;
-using proiect.Models.Relations.OneToMany;
-using proiect.Repositories.GenericRepository;
 using proiect.Utilities.Extensions;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace proiect.Repositories.DatabaseRepository
 {
-    public class StudentRepository:GenericRepository<Student>,IDatabaseRepository
+    public class StudentRepository:GenericRepository<Student>//,IDatabaseRepository
     {
         public StudentRepository(ProiectContext context) :base(context)
         {
@@ -56,84 +52,84 @@ namespace proiect.Repositories.DatabaseRepository
             }
         }
 
-        public Model1 GetByTitle(string title)
-        {
-            throw new NotImplementedException();
-        }
+        //public Model1 GetByTitle(string title)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Model1 GetByTitleIncludingModel2(string title)
-        {
-            throw new NotImplementedException();
-        }
+        //public Model1 GetByTitleIncludingModel2(string title)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public List<Model1> GetAllWithInclude()
-        {
-            throw new NotImplementedException();
-        }
+        //public List<Model1> GetAllWithInclude()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public List<Model1> GetAllWithJoin()
-        {
-            throw new NotImplementedException();
-        }
+        //public List<Model1> GetAllWithJoin()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        Task<List<Model1>> IGenericRepository<Model1>.GetAll()
-        {
-            throw new NotImplementedException();
-        }
+        //Task<List<Model1>> IGenericRepository<Model1>.GetAll()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        IQueryable<Model1> IGenericRepository<Model1>.GetAllAsQueryable()
-        {
-            throw new NotImplementedException();
-        }
+        //IQueryable<Model1> IGenericRepository<Model1>.GetAllAsQueryable()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public void Create(Model1 entity)
-        {
-            throw new NotImplementedException();
-        }
+        //public void Create(Model1 entity)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Task CreateAsync(Model1 entity)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task CreateAsync(Model1 entity)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public void CreateRange(IEnumerable<Model1> entities)
-        {
-            throw new NotImplementedException();
-        }
+        //public void CreateRange(IEnumerable<Model1> entities)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Task CreateRangeAsync(IEnumerable<Model1> entities)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task CreateRangeAsync(IEnumerable<Model1> entities)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public void Update(Model1 entity)
-        {
-            throw new NotImplementedException();
-        }
+        //public void Update(Model1 entity)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public void UpdateRange(IEnumerable<Model1> entities)
-        {
-            throw new NotImplementedException();
-        }
+        //public void UpdateRange(IEnumerable<Model1> entities)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public void Delete(Model1 entity)
-        {
-            throw new NotImplementedException();
-        }
+        //public void Delete(Model1 entity)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public void DeleteRange(IEnumerable<Model1> entities)
-        {
-            throw new NotImplementedException();
-        }
+        //public void DeleteRange(IEnumerable<Model1> entities)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        Model1 IGenericRepository<Model1>.FindById(object id)
-        {
-            throw new NotImplementedException();
-        }
+        //Model1 IGenericRepository<Model1>.FindById(object id)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        Task<Model1> IGenericRepository<Model1>.FindByIdAsync(object id)
-        {
-            throw new NotImplementedException();
-        }
+        //Task<Model1> IGenericRepository<Model1>.FindByIdAsync(object id)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

@@ -25,6 +25,12 @@ namespace proiect.Controllers
             var result = _categorieService.GetDataMappedByName(name);
             return Ok(result);
         }
+        [HttpGet("readById")]
+        public IActionResult GetById(Guid id)
+        {
+            var result = _categorieService.GetDataMappedById(id);
+            return Ok(result);
+        }
         [HttpPost("create")]
         public IActionResult Create(CategorieRequestDTO categorie)
         {

@@ -78,5 +78,18 @@ namespace proiect.Services.AddressService
             };
             return result;
         }
+
+        public AddressRequestDTO GetDataMappedById(Guid id)
+        {
+            Address address = _addressRepository.GetByIdIncludingUser(id);
+            AddressRequestDTO result = new()
+            {
+                CodPostal = address.CodPostal,
+                Strada = address.Strada,
+                Judet = address.Judet,
+                Localitate = address.Localitate
+            };
+            return result;
+        }
     }
 }

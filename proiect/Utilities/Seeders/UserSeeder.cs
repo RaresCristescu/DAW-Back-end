@@ -7,25 +7,26 @@ using System.Threading.Tasks;
 
 namespace proiect.Utilities.Seeders
 {
-    public class StudentSeeder
+    public class UserSeeder
     {
         public readonly ProiectContext _context;
-        public StudentSeeder(ProiectContext context)
+        public UserSeeder(ProiectContext context)
         {
             _context = context;
         }
-
-        public void SeedInitialStudents()
+        public void SeedInitialUsers()
         {
-            if(!_context.Students.Any())
+            if (!_context.Users.Any())
             {
-                var student = new Student
+                var user = new User
                 {
-                    Name = "Student 1",
-                    Age = 21,
+                    FirstName = "",
+                    LastName = "",
+                    UserName="",
+                    Email="",
                     IsDeleted = false
                 };
-                _context.Add(student);
+                _context.Add(user);
                 _context.SaveChanges();
             }
         }

@@ -21,6 +21,7 @@ namespace proiect.Services.ProdusServ
             Produs produs = _produsRepository.GetByTitluIncludingDetaliiComanda(titlu);
             ProdusRequestDTO result = new()
             {
+                //Id=produs.Id,
                 Titlu = produs.Titlu,
                 Descriere = produs.Descriere,
                 Imagine = produs.Imagine,
@@ -29,6 +30,31 @@ namespace proiect.Services.ProdusServ
             };
             return result;
         }
+
+        public List<ProdusRequestDTO> GetAllDataMapped()
+        {
+            List<Produs> produse = _produsRepository.GetAllWithInclude();
+            //
+            List<ProdusRequestDTO> results = new List<ProdusRequestDTO>();
+            //produse.ForEach(pro => results.Add(pro));
+            for (int i = 0; i < produse.Count; i++)
+            {
+                results.Add(new()
+                {
+                    //Id=produs.Id,
+                    Titlu = produse[i].Titlu,
+                    Descriere = produse[i].Descriere,
+                    Imagine = produse[i].Imagine,
+                    Pret = produse[i].Pret,
+                    CategorieId = produse[i].CategorieId
+                });
+            }
+
+            return results;
+        }
+
+
+
 
         public ProdusRequestDTO PostDataMappedByTitlu(Produs _produs)
         {
@@ -71,5 +97,19 @@ namespace proiect.Services.ProdusServ
             return result;
         }
 
+        public ProdusRequestDTO GetDataMappedById(Guid id)
+        {
+            Produs produs = _produsRepository.GetByIdIncludingDetaliiComanda(id);
+            ProdusRequestDTO result = new()
+            {
+                //Id=produs.Id,
+                Titlu = produs.Titlu,
+                Descriere = produs.Descriere,
+                Imagine = produs.Imagine,
+                Pret = produs.Pret,
+                CategorieId = produs.CategorieId
+            };
+            return result;
+        }
     }
 }

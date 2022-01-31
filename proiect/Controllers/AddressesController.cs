@@ -43,6 +43,12 @@ namespace proiect.Controllers
             var result = _addressService.GetDataMappedByLocalitate(codPostal);
             return Ok(result);
         }
+        [HttpGet("readById")]
+        public IActionResult GetById(Guid Id)//[FromHeader]
+        {
+            var result = _addressService.GetDataMappedById(Id);
+            return Ok(result);
+        }
 
         [HttpPost("create")]
         public IActionResult Create(AddressRequestDTO address)

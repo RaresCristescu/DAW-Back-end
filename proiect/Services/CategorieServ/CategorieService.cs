@@ -57,6 +57,16 @@ namespace proiect.Services.CategorieServ
             };
             return result;
         }
-        
+
+        public CategorieRequestDTO GetDataMappedById(Guid id)
+        {
+            Categorie categorie = _categorieRepository.GetByIdIncludingProdus(id);
+            CategorieRequestDTO result = new()
+            {
+                Nume = categorie.Nume,
+                Descriere = categorie.Descriere,
+            };
+            return result;
+        }
     }
 }

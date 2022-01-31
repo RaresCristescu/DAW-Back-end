@@ -10,6 +10,7 @@ namespace proiect.Services.CategorieServ
     public interface ICategorieService
     {
         CategorieRequestDTO GetDataMappedByName(string name);
+        CategorieRequestDTO GetDataMappedById(Guid id);
         CategorieRequestDTO PostDataMappedByName(Categorie _categorie);
         //AddressRequestDTO PutDataMappedByLocalitate(Address _address);
         CategorieRequestDTO PutDataMappedById(Guid categorieId, Categorie _categorie);

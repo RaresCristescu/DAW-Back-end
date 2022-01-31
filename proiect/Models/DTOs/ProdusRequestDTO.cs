@@ -7,6 +7,7 @@ namespace proiect.Models.DTOs
 {
     public class ProdusRequestDTO
     {
+        //public Guid Id { get; set; }
         public string Titlu { get; set; }
         public string Descriere { get; set; }
         public string Imagine { get; set; }

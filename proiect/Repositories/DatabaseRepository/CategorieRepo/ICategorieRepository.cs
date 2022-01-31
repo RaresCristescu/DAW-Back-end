@@ -11,6 +11,7 @@ namespace proiect.Repositories.DatabaseRepository.CategorieRepo
     {
         Categorie GetByName(string name);
         Categorie GetByNameIncludingProdus(string name);
+        Categorie GetByIdIncludingProdus(Guid id);
         Categorie PostCategorie(Categorie categorie);
         Categorie PutCategorie(Guid catId, Categorie categorie);
         Categorie DeleteCategorie(Guid catId);

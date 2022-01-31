@@ -11,6 +11,7 @@ namespace proiect.Repositories.DatabaseRepository.AddressRepo
     {
         Address GetByCodPostal(string title);
         Address GetByCodPostalIncludingUser(string title);
+        Address GetByIdIncludingUser(Guid id);
         Address GetByLocalitateIncludingUser(string localitate);
         Address PostAddress(Address address);
         Address PutAddress(Guid addId,Address address);

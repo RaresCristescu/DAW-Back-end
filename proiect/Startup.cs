@@ -62,17 +62,18 @@ namespace proiect
             //services.AddAutoMapper(typeof(Startup));
 
             ///Cors
-            services.AddCors(options=> 
-            {
-                options.AddPolicy(name: CorsAllowSpecificOrigin,
-                    builder =>
-                    {
-                        builder.WithOrigins("https://localhost:4200", "https://localhost:4201")
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowCredentials();
-                    });
-            });
+            //services.AddCors(options=> 
+            //{
+            //    options.AddPolicy(name: CorsAllowSpecificOrigin,
+            //        builder =>
+            //        {
+            //            builder.WithOrigins("https://localhost:4200", "https://localhost:4201")
+            //            .AllowAnyMethod()
+            //            .AllowAnyHeader()
+            //            .AllowCredentials();
+            //        });
+            //});
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -92,6 +93,9 @@ namespace proiect
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            //app.UseCors(CorsAllowSpecificOrigin);
+            app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
 
             //adaug middleware
             app.UseMiddleware<JWTMiddleware>();

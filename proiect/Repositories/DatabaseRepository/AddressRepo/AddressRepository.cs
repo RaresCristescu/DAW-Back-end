@@ -91,5 +91,49 @@ namespace proiect.Repositories.DatabaseRepository.AddressRepo
             //return result2.FirstOrDefault();//alta varianta
             return result.FirstOrDefault();
         }
+
+        public Address GetByIdIncludingUser(Guid id)
+        {
+            return _table.FirstOrDefault(x => x.Id.Equals(id));
+        }
+        ////
+        ///
+        //public void OrderByAge()
+        //{
+        //    //LINQ
+        //    var studentOrderedAsc1 = _table.OrderBy(x => x.Age);
+        //    var studentOrderedDesc1 = _table.OrderByDescending(x => x.Age);
+
+        //    //LINQ Querry Syntax
+        //    var studentsOrderedAsc2 = from s in _table
+        //                              orderby s.Age
+        //                              select s;
+        //    var studentsOrderedDesc2 = from s in _table
+        //                               orderby s.Age descending
+        //                               select s;
+
+
+        //}
+        //public void OrderByAgeAndName()
+        //{
+        //    var studentsOrderedAsc1 = _table.GetActive().OrderBy(x => x.Age).ThenBy(x => x.Name);
+        //    var studentsOrderedDesc1 = _table.GetActive().OrderBy(x => x.Age).ThenByDescending(x => x.Name);
+        //}
+
+        //public void GroupBy()
+        //{
+        //    var groupedStudents = from s in _table group s by s.Age;
+        //    var groupedStudents1 = _table.GroupBy(x => x.Age);
+
+        //    foreach (var studentGroupByAge in groupedStudents)
+        //    {
+        //        Console.WriteLine("Students group age: " + studentGroupByAge.Key);
+
+        //        foreach (Student s in studentGroupByAge)
+        //        {
+        //            Console.WriteLine("Student Name: " + s.Name);
+        //        }
+        //    }
+        //}
     }
 }

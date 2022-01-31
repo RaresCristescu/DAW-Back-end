@@ -8,7 +8,7 @@ namespace proiect.Utilities.Extensions
 {
     public static class OnlyActive
     {
-        public static IQueryable<Student> GetActive(this IQueryable<Student> entities)
+        public static IQueryable<User> GetActive(this IQueryable<User> entities)
         {
             return entities.Where(x => x.IsDeleted == false);
         }

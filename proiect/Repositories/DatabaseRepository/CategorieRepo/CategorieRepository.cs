@@ -51,6 +51,8 @@ namespace proiect.Repositories.DatabaseRepository.CategorieRepo
             return _table.Include(x => x.Produss).FirstOrDefault(x => x.Nume.ToLower().Equals(name.ToLower()));
 
         }
+        
+
 
         public Categorie PostCategorie(Categorie categorie)
         {
@@ -87,6 +89,11 @@ namespace proiect.Repositories.DatabaseRepository.CategorieRepo
 
             //return result2.FirstOrDefault();//alta varianta
             return result.FirstOrDefault();
+        }
+
+        public Categorie GetByIdIncludingProdus(Guid id)
+        {
+            return _table.FirstOrDefault(x => x.Id.Equals(id));
         }
     }
 }

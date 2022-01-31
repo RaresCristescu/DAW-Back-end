@@ -11,6 +11,7 @@ namespace proiect.Services.AddressService
     {
         AddressRequestDTO GetDataMappedByCodPostal(string codPostal);
         AddressRequestDTO GetDataMappedByLocalitate(string codPostal);
+        AddressRequestDTO GetDataMappedById(Guid id);
         AddressRequestDTO PostDataMappedByLocalitate(Address _address);
         //AddressRequestDTO PutDataMappedByLocalitate(Address _address);
         AddressRequestDTO PutDataMappedById(Guid addressId, Address _address);

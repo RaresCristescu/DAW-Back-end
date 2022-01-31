@@ -11,6 +11,7 @@ namespace proiect.Repositories.DatabaseRepository.ProdusRepo
     {
         Produs GetByTitlu(string title);
         Produs GetByTitluIncludingDetaliiComanda(string title);
+        Produs GetByIdIncludingDetaliiComanda(Guid id);
         Produs PostProdus( Produs produs);
         Produs PutProdus(Guid addId, Produs produs);
         Produs DeleteProdus(Guid produsId);

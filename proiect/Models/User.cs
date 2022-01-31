@@ -18,6 +18,7 @@ namespace proiect.Models
         public string Email { get; set; }
         [JsonIgnore]
         public string PasswordHash { get; set; }
+        public bool IsDeleted { get; set; }
         public Role Role { get; set; }
         public Address Address { get; set; }
         public Guid AddressId { get; set; }

@@ -31,7 +31,7 @@ namespace proiect.Repositories.DatabaseRepository.ProdusRepo
         //    return await result.ToList();
         //}
 
-        public Produs GetByTitlu(string title)
+        public Produs GetByTitlu(string title) 
         {
             return _table.FirstOrDefault(x => x.Titlu.ToLower().Equals(title.ToLower()));
         }
@@ -83,5 +83,9 @@ namespace proiect.Repositories.DatabaseRepository.ProdusRepo
             return result.FirstOrDefault();
         }
 
+        public Produs GetByIdIncludingDetaliiComanda(Guid id)
+        {
+            return _table.Include(x => x.DetaliiComandas).FirstOrDefault(x => x.Id.Equals(id));
+        }
     }
 }
